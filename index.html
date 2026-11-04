@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jason Mandabrandja – Full Stack & DevOps Engineer</title>
+<meta name="description" content="Senior full stack (Java / .NET) and DevOps engineer with 9 years of experience building secure, high-availability business applications.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#top">Jason Mandabrandja</a>
+  <nav aria-label="Main">
+    <a href="#services" data-i18n="nav_services">Services</a>
+    <a href="#work" data-i18n="nav_work">Work</a>
+    <a href="#stack" data-i18n="nav_stack">Stack</a>
+    <a href="#experience" data-i18n="nav_exp">Experience</a>
+    <a href="#contact" data-i18n="nav_contact">Contact</a>
+    <button id="lang" type="button" aria-label="Changer de langue / Switch language">FR</button>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <h1 data-i18n="h1">I build business applications and the pipelines that ship them.</h1>
+    <p class="lead" data-i18n="lead">Senior full stack engineer (Java, .NET, Angular) with a DevOps practice. 9 years designing, delivering and modernising secure web and mobile software, based in Dakar.</p>
+    <div class="cta">
+      <a class="btn primary" href="#contact" data-i18n="cta1">Start a project</a>
+      <a class="btn" href="cv.pdf" download data-i18n="cta2">Download CV</a>
+    </div>
+    <ol class="pipeline" aria-label="Delivery pipeline">
+      <li><b>Code</b><span>Java · C# · Angular</span></li>
+      <li><b>Build</b><span>Docker · Maven · .NET</span></li>
+      <li><b>Test</b><span data-i18n="p3">CI checks on every push</span></li>
+      <li><b data-i18n="p4">Deploy</b><span>Azure DevOps · GitHub Actions</span></li>
+      <li class="ok"><b data-i18n="p5">Live</b><span data-i18n="p5s">Passing</span></li>
+    </ol>
+  </section>
+
+  <section id="services">
+    <h2 data-i18n="h_services">What I can do for you</h2>
+    <div class="grid">
+      <article><h3 data-i18n="s1h">Custom business applications</h3><p data-i18n="s1">Secure, high-availability web apps with Spring Boot or .NET Core back ends and responsive Angular front ends.</p></article>
+      <article><h3 data-i18n="s2h">CI/CD and DevOps</h3><p data-i18n="s2">Automated build, test and deployment pipelines with Azure DevOps, GitLab CI/CD and GitHub Actions, packaged in Docker.</p></article>
+      <article><h3 data-i18n="s3h">APIs and integrations</h3><p data-i18n="s3">REST APIs, micro-services and third-party integrations, including payment providers such as VISA, PayPal and Orange Money.</p></article>
+      <article><h3 data-i18n="s4h">Modernisation and training</h3><p data-i18n="s4">Moving legacy applications to current architectures, and coaching teams on clean code and design patterns.</p></article>
+    </div>
+  </section>
+
+  <section id="work">
+    <h2 data-i18n="h_work">Selected work</h2>
+    <div class="cases">
+      <article class="case">
+        <img src="images/senegal-love.svg" alt="Screenshot placeholder: Sénégal-Love platform" loading="lazy">
+        <div><h3>Sénégal-Love</h3><p class="role" data-i18n="c1r">Tech lead and full stack developer, 2020–2021</p>
+        <p data-i18n="c1">A web platform with payment integration (VISA, PayPal, Orange Money). I led the technical side, shared out the workload and supported the developers.</p>
+        <ul class="tags"><li>Payment APIs</li><li>Agile</li><li>Full stack</li></ul></div>
+      </article>
+      <article class="case">
+        <img src="images/makeda.svg" alt="Screenshot placeholder: MakedaGroupe platform" loading="lazy">
+        <div><h3>MakedaGroupe</h3><p class="role" data-i18n="c2r">Full stack developer, 2020–2021</p>
+        <p data-i18n="c2">A platform connecting training providers and learners. I built features end to end and deployed them on Linux.</p>
+        <ul class="tags"><li>Angular 8</li><li>Node.js</li><li>Laravel API</li><li>MySQL</li></ul></div>
+      </article>
+      <article class="case">
+        <img src="images/ecommerce.svg" alt="Screenshot placeholder: e-commerce and e-ticketing platforms" loading="lazy">
+        <div><h3 data-i18n="c3h">E-commerce and e-ticketing platforms</h3><p class="role" data-i18n="c3r">Full stack and .NET developer, 2016–2019</p>
+        <p data-i18n="c3">Online shop and ticketing platforms for several clients in Dakar, with third-party API integrations and relational databases.</p>
+        <ul class="tags"><li>Spring Boot</li><li>Angular</li><li>ASP.NET MVC</li><li>C#</li><li>SQL Server</li></ul></div>
+      </article>
+      <article class="case">
+        <img src="images/hackathon.svg" alt="Screenshot placeholder: Hackathon CDP project" loading="lazy">
+        <div><h3 data-i18n="c4h">Hackathon CDP 2019: data protection</h3><p class="role" data-i18n="c4r">Winning project leader</p>
+        <p data-i18n="c4">A project on personal data protection that won the hackathon, which I led and presented.</p>
+        <ul class="tags"><li data-i18n="c4t">Data protection</li></ul></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="stack">
+    <h2 data-i18n="h_stack">Stack</h2>
+    <dl class="stack">
+      <div><dt data-i18n="t1">Back end</dt><dd>Java, Spring Boot, C#, .NET Core, ASP.NET MVC, Node.js, PHP, REST, micro-services</dd></div>
+      <div><dt data-i18n="t2">Front end</dt><dd>Angular, TypeScript, JavaScript, HTML5, CSS3, jQuery</dd></div>
+      <div><dt>DevOps</dt><dd>Azure DevOps, Git, GitHub Actions, GitLab CI/CD, Docker, Linux, Agile</dd></div>
+      <div><dt data-i18n="t4">Data</dt><dd>PostgreSQL, Oracle, SQL Server, MySQL, MongoDB, PL/SQL, AI API integration</dd></div>
+    </dl>
+  </section>
+
+  <section id="experience">
+    <h2 data-i18n="h_exp">Experience</h2>
+    <ol class="timeline">
+      <li><time data-i18n="e1d">Nov 2021 – Present</time><h3 data-i18n="e1h">Senior Full Stack (Java / .NET) & DevOps Consultant</h3><p class="org">Sun-Telecoms · SPVIE · OnVousAssure</p><p data-i18n="e1">Design and maintenance of secure, highly available business web applications. CI/CD pipelines on Azure DevOps, Spring Boot and .NET Core services, and administration of SQL Server, PostgreSQL, MySQL and MongoDB.</p></li>
+      <li><time data-i18n="e2d">Mar 2021 – Dec 2023</time><h3 data-i18n="e2h">Software Engineering Trainer & Web Consultant</h3><p class="org">Groupe ISI, Dakar · AlphaNumerika</p><p data-i18n="e2">Taught Java and C# OOP, coding practices and design patterns. Built business websites and applications, ran acceptance testing and wrote technical documentation.</p></li>
+      <li><time data-i18n="e3d">Nov 2020 – May 2021</time><h3 data-i18n="e3h">Tech Lead / Full Stack Developer</h3><p class="org">Sénégal-Love, Dakar</p><p data-i18n="e3">Led the technical side of the project, balanced the team's workload and built the platform, including VISA, PayPal and Orange Money payment APIs.</p></li>
+      <li><time data-i18n="e4d">Jul 2020 – Mar 2021</time><h3 data-i18n="e4h">Full Stack Developer</h3><p class="org">MakedaGroupe, Dakar</p><p data-i18n="e4">Built features for a training marketplace with Angular 8, Node.js, Laravel API and MySQL, deployed on Linux.</p></li>
+      <li><time data-i18n="e5d">Aug 2016 – Feb 2019</time><h3 data-i18n="e5h">Full Stack & .NET Developer (internships and projects)</h3><p class="org">ADATESSO · Bijouterie La Solution · Easy-Tech</p><p data-i18n="e5">E-commerce and e-ticketing platforms with Spring Boot, Angular, ASP.NET MVC and C#.</p></li>
+    </ol>
+  </section>
+
+  <section id="education">
+    <h2 data-i18n="h_edu">Education and recognition</h2>
+    <div class="grid">
+      <article><h3 data-i18n="d1h">Master's in Business Computing (MIAGE)</h3><p data-i18n="d1">Groupe ISI, Dakar, 2020 (5 years of higher education). Bachelor's (LIAGE) in 2018.</p></article>
+      <article><h3 data-i18n="d2h">Hackathon CDP 2019</h3><p data-i18n="d2">Winning project leader, data protection. Also led the Expresso e-service project at Nuit de l'Informatique 2018.</p></article>
+    </div>
+    <p class="langs" data-i18n="langs">Languages: French (native), English (good technical level).</p>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2 data-i18n="h_contact">Let's talk about your project</h2>
+    <p data-i18n="avail">Available for consulting and contract work.</p>
+    <form id="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <label><span data-i18n="f_name">Name</span><input name="name" required autocomplete="name"></label>
+      <label><span data-i18n="f_email">Email</span><input name="email" type="email" required autocomplete="email"></label>
+      <label class="full"><span data-i18n="f_msg">Message</span><textarea name="message" rows="5" required></textarea></label>
+      <input class="hp" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn primary" type="submit" data-i18n="f_send">Send message</button>
+      <p id="status" role="status" aria-live="polite"></p>
+    </form>
+    <p class="links">
+      <a href="mailto:jasonmandabrandja@gmail.com">jasonmandabrandja@gmail.com</a>
+      <a href="tel:+221781193092">+221 78 119 30 92</a>
+      <a href="https://linkedin.com/in/jasonmanda" target="_blank" rel="noopener">LinkedIn</a>
+    </p>
+  </section>
+</main>
+<footer>© <span id="y">2026</span> Jason Mandabrandja</footer>
+<script src="script.js"></script>
+</body>
+</html>
