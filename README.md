@@ -23,4 +23,5 @@ Until then, the form opens the visitor's email app with the message pre-filled.
 
 ## Languages
 Default language follows the visitor's browser (French or English). French text lives in the `fr` object at the top of `script.js`.
-# portfolio
+
+KM-Hôtel screenshot: replace `images/km-hotel.svg` (or change its `src` in `index.html`).
