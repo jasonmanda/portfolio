@@ -19,6 +19,7 @@
     <a href="#work" data-i18n="nav_work">Work</a>
     <a href="#stack" data-i18n="nav_stack">Stack</a>
     <a href="#experience" data-i18n="nav_exp">Experience</a>
+    <a href="#estimate" data-i18n="nav_estimate">Estimate</a>
     <a href="#contact" data-i18n="nav_contact">Contact</a>
     <button id="lang" type="button" aria-label="Changer de langue / Switch language">FR</button>
   </nav>
@@ -118,6 +119,34 @@
     <p class="langs" data-i18n="langs">Languages: French (native), English (good technical level).</p>
   </section>
 
+  <section id="estimate">
+    <div class="est" id="est">
+      <p class="est-kicker" data-i18n="est_kicker">Quick estimate</p>
+      <h2 data-i18n="est_h">Estimate your budget in 30 seconds</h2>
+      <p class="est-sub" data-i18n="est_sub">Indicative range based on my Dakar rates. A precise quote follows a short conversation.</p>
+
+      <fieldset>
+        <legend data-i18n="est_type">Project type</legend>
+        <div class="est-types" id="est-types"></div>
+      </fieldset>
+      <fieldset>
+        <legend data-i18n="est_cx">Complexity</legend>
+        <div class="est-pills" id="est-cx"></div>
+      </fieldset>
+      <fieldset>
+        <legend id="est-opt-legend" data-i18n="est_opt">Options (optional)</legend>
+        <div class="est-opts" id="est-opts"></div>
+      </fieldset>
+
+      <div class="est-result" aria-live="polite">
+        <p class="est-label" data-i18n="est_label">Indicative estimate</p>
+        <p class="est-value" id="est-value">…</p>
+        <p class="est-note" id="est-note"></p>
+        <button class="est-quote" id="est-quote" type="button" data-i18n="est_quote">Request this quote</button>
+      </div>
+    </div>
+  </section>
+
   <section id="contact" class="contact">
     <h2 data-i18n="h_contact">Let's talk about your project</h2>
     <p data-i18n="avail">Available for consulting and contract work.</p>
@@ -138,5 +167,6 @@
 </main>
 <footer>© <span id="y">2026</span> Jason Mandabrandja</footer>
 <script src="script.js"></script>
+<script src="estimate.js"></script>
 </body>
 </html>

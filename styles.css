@@ -1,5 +1,24 @@
-:root{--bg:#f6f7f9;--ink:#0d1b2e;--muted:#4b5a6e;--line:#d9dee6;--accent:#2145f0;--ok:#12805c;--card:#fff}
-@media (prefers-color-scheme:dark){:root{--bg:#0b1320;--ink:#eaf0f8;--muted:#9fb0c6;--line:#22324a;--accent:#7b97ff;--ok:#43d19e;--card:#111d30}}
+/* ===== CHARTE GRAPHIQUE =====
+   Marine + bleu, un seul accent, vert réservé au statut « en ligne ».
+   Modifiez les couleurs ici : tout le site (dont le simulateur) suit. */
+:root{
+  --bg:#f5f7fa;          /* fond de page */
+  --card:#ffffff;        /* cartes, champs */
+  --ink:#0b1b33;         /* texte principal (marine) */
+  --muted:#52617a;       /* texte secondaire */
+  --line:#d8dfe9;        /* bordures */
+  --accent:#1d4ed8;      /* accent : liens, boutons, repères */
+  --on-accent:#ffffff;   /* texte sur fond accent */
+  --ok:#0f7b5f;          /* statut positif */
+  --on-ok:#ffffff;
+  /* Panneau du simulateur : toujours sombre, accent plus clair */
+  --panel:#0b1b33;--panel-deep:#07142a;--panel-line:#23365a;--panel-accent:#8aa4ff;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0a1220;--card:#101b2e;--ink:#e8eef8;--muted:#9db0c9;--line:#22324b;
+  --accent:#7b97ff;--on-accent:#0a1220;--ok:#43d19e;--on-ok:#06231a;
+  --panel:#101d33;--panel-deep:#0a1424;--panel-line:#26395c;--panel-accent:#8aa4ff;
+}}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 "IBM Plex Sans",system-ui,sans-serif}
 h1,h2,h3,.brand{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
@@ -16,7 +35,7 @@ h3{font-size:1.2rem;font-weight:600}
 .lead{max-width:58ch;color:var(--muted);font-size:1.2rem;margin:1.5rem 0 2rem}
 .cta{display:flex;gap:.8rem;flex-wrap:wrap}
 .btn{display:inline-block;padding:.75rem 1.3rem;border:2px solid var(--ink);border-radius:6px;text-decoration:none;font-weight:500}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .btn:hover{transform:translateY(-2px)}
 .pipeline{list-style:none;padding:0;margin:3.5rem 0 0;display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}
 .pipeline li{padding:1rem 1.1rem;border-right:1px solid var(--line);opacity:0;animation:stage .5s forwards}
@@ -24,7 +43,7 @@ h3{font-size:1.2rem;font-weight:600}
 .pipeline li:nth-child(2){animation-delay:.35s}.pipeline li:nth-child(3){animation-delay:.7s}.pipeline li:nth-child(4){animation-delay:1.05s}.pipeline li:nth-child(5){animation-delay:1.4s}
 .pipeline b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:1.15rem}
 .pipeline span{font-size:.85rem;color:var(--muted)}
-.pipeline .ok{background:var(--ok)}.pipeline .ok b,.pipeline .ok span{color:#fff}
+.pipeline .ok{background:var(--ok)}.pipeline .ok b,.pipeline .ok span{color:var(--on-ok)}
 @keyframes stage{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
 .grid article{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.5rem}
@@ -59,3 +78,62 @@ form .btn{justify-self:start;cursor:pointer;font:inherit;font-weight:500}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 @media(max-width:760px){.case{grid-template-columns:1fr}.case:nth-child(even) img{order:0}form{grid-template-columns:1fr}}
 .visit{display:inline-block;margin-top:.9rem;font-weight:500;color:var(--accent);text-underline-offset:4px}
+
+/* ---- Estimation (carte sombre, accent orange) ---- */
+#estimate{--e-bg:var(--panel);--e-deep:var(--panel-deep);--e-line:var(--panel-line);--e-ink:#f2f6fc;--e-mut:#9fb0c9;--e-acc:var(--panel-accent);--e-sel:rgba(138,164,255,.14);--e-hov:rgba(138,164,255,.5);--e-on:#0a1220}
+.est{position:relative;color:var(--e-ink);border:1px solid var(--e-line);border-radius:22px;padding:clamp(1.2rem,3.5vw,2.2rem);background:radial-gradient(120% 90% at 100% 0,rgba(138,164,255,.16) 0,transparent 55%),var(--e-bg)}
+.est-kicker{margin:0 0 .6rem;color:var(--e-acc);font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.est h2{font-size:clamp(1.5rem,3.2vw,2.1rem);margin:0 0 .6rem}
+.est-sub{margin:0 0 1.6rem;color:var(--e-mut);font-size:1rem}
+.est fieldset{border:0;margin:0 0 1.4rem;padding:0;min-width:0}
+.est legend{padding:0;margin-bottom:.7rem;font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.est label{position:relative;display:flex;font-size:inherit;gap:0;cursor:pointer}
+.est input{position:absolute;opacity:0;width:1px;height:1px;padding:0;border:0;margin:0;pointer-events:none}
+.est-types{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.8rem}
+.est-card{flex-direction:column;gap:.25rem;padding:.9rem 1rem;background:var(--e-deep);border:1px solid var(--e-line);border-radius:12px;transition:border-color .15s,background .15s}
+.est-t{font-weight:600;font-size:.95rem}.est-d{color:var(--e-mut);font-size:.78rem;line-height:1.4}
+.est-card:hover,.est-pill:hover,.est-opt:hover{border-color:var(--e-hov)}
+.est-card:has(input:checked){border-color:var(--e-acc);background:var(--e-sel)}
+.est-pills{display:flex;flex-wrap:wrap;gap:.6rem}
+.est-pill{padding:.5rem 1rem;background:var(--e-deep);border:1px solid var(--e-line);border-radius:999px;font-size:.9rem;font-weight:500;transition:background .15s,color .15s}
+.est-pill:has(input:checked){background:var(--e-acc);border-color:var(--e-acc);color:var(--e-on)}
+.est-result{margin-top:1.8rem;padding:1.3rem 1.4rem;background:var(--e-deep);border:1px solid var(--e-line);border-radius:14px}
+.est-label{margin:0 0 .4rem;color:var(--e-mut);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.est-value{margin:0 0 .5rem;color:var(--e-acc);font:800 clamp(1.3rem,3.6vw,1.9rem)/1.2 "Bricolage Grotesque",system-ui,sans-serif}
+.est-note{margin:0;color:var(--e-mut);font-size:.85rem}
+.est-quote{margin-top:1.1rem;padding:.7rem 1.3rem;border:0;border-radius:8px;background:var(--e-acc);color:var(--e-on);font:600 .95rem "IBM Plex Sans",sans-serif;cursor:pointer}
+.est-quote:hover{filter:brightness(1.08)}
+@media(max-width:980px){.est-types{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.est-types,.est-opts{grid-template-columns:1fr}}
+@media(max-width:760px){nav{flex-wrap:wrap;row-gap:.4rem}}
+
+/* Options : cartes + option à niveaux */
+.est-opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
+label.est-opt{align-items:flex-start;gap:.85rem;padding:1rem;background:var(--e-deep);border:1px solid var(--e-line);border-radius:14px;transition:border-color .15s,background .15s}
+label.est-opt:has(input:checked){border-color:var(--e-acc);background:var(--e-sel)}
+.est-ico{flex:none;width:38px;height:38px;display:grid;place-items:center;border-radius:10px;border:1px solid var(--e-line);background:rgba(255,255,255,.04);color:var(--e-acc)}
+.est-ico svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.est-body{display:flex;flex-direction:column;gap:.2rem;flex:1;min-width:0}
+.est-ot{font-weight:600;font-size:.95rem}
+.est-od{color:var(--e-mut);font-size:.8rem;line-height:1.45}
+.est-op{margin-top:.4rem;color:var(--e-acc);font-size:.78rem;font-weight:500}
+.est-box{flex:none;width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:grid;place-items:center}
+.est-opt:has(input:checked) .est-box{background:var(--e-acc);border-color:var(--e-acc)}
+.est-opt:has(input:checked) .est-box::after{content:"";width:5px;height:10px;margin-top:-2px;border:solid var(--e-on);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.est-lvl{grid-column:1/-1;display:flex;flex-direction:column;gap:.9rem;padding:1.1rem;background:var(--e-deep);border:1px solid var(--e-line);border-radius:14px;transition:border-color .15s}
+.est-lvl:has(input:checked:not([value=""])){border-color:var(--e-acc)}
+.est-lvl-head{display:flex;align-items:flex-start;gap:.85rem}
+.est-segs{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:.6rem}
+label.est-seg{flex-direction:column;gap:.15rem;padding:.7rem .9rem;background:rgba(255,255,255,.03);border:1px solid var(--e-line);border-radius:10px;transition:border-color .15s,background .15s}
+label.est-seg:hover{border-color:var(--e-hov)}
+label.est-seg:has(input:checked){border-color:var(--e-acc);background:var(--e-sel)}
+.est-sl{font-weight:600;font-size:.9rem}
+.est-sp{color:var(--e-mut);font-size:.74rem}
+.est-seg:has(input:checked) .est-sp{color:var(--e-acc)}
+.est-lvl-d{margin:0;color:var(--e-mut);font-size:.85rem;line-height:1.5}
+.est-lvl-d:empty{display:none}
+@media(max-width:760px){.est-segs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.est-opts{grid-template-columns:1fr}}
+label.est-opt.wide{grid-column:1/-1}
+.est [hidden]{display:none!important}
+.est-quote:disabled{opacity:.45;cursor:not-allowed;filter:none}

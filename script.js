@@ -1,5 +1,5 @@
 const fr = {
-nav_services:"Services",nav_work:"Projets",nav_stack:"Technologies",nav_exp:"Expérience",nav_contact:"Contact",
+nav_services:"Services",nav_work:"Projets",nav_stack:"Technologies",nav_exp:"Expérience",nav_contact:"Contact",nav_estimate:"Estimation",
 h1:"Je conçois des applications métiers et les pipelines qui les livrent.",
 lead:"Ingénieur full stack senior (Java, .NET, Angular) avec une pratique DevOps. 9 ans de conception, livraison et modernisation de logiciels web et mobiles sécurisés, basé à Dakar.",
 cta1:"Démarrer un projet",cta2:"Télécharger le CV",
@@ -27,6 +27,7 @@ d1h:"Master en Informatique Appliquée à la Gestion des Entreprises (MIAGE)",d1
 d2h:"Hackathon CDP 2019",d2:"Lauréat porteur de projet, protection des données. Porteur du projet e-service Expresso à la Nuit de l'Informatique 2018.",
 langs:"Langues : français (langue maternelle), anglais (bon niveau technique).",
 h_contact:"Parlons de votre projet",avail:"Disponible pour des missions de conseil et de développement.",
+est_kicker:"Estimation rapide",est_h:"Estimez votre budget en 30 secondes",est_sub:"Fourchette indicative selon mon barème à Dakar. Le devis précis arrive après un court échange.",est_type:"Type de projet",est_cx:"Complexité",est_opt:"Options (facultatif)",est_label:"Estimation indicative",est_quote:"Demander ce devis",
 f_name:"Nom",f_email:"E-mail",f_msg:"Message",f_send:"Envoyer le message"
 };
 const msg = {
@@ -45,6 +46,7 @@ function setLang(l){
   document.title = titles[l];
   btn.textContent = l === "fr" ? "EN" : "FR";
   try { localStorage.setItem("lang", l); } catch (e) {}
+  document.dispatchEvent(new Event("langchange"));
 }
 btn.addEventListener("click", () => setLang(lang === "fr" ? "en" : "fr"));
 let saved = null;

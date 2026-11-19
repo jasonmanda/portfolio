@@ -1,0 +1,513 @@
+{
+  "_aide": [
+    "Fichier de tarifs du simulateur d'estimation. Modifiez les chiffres, puis rechargez la page (pas de build).",
+    "Formule : fourchette = (prix du type x multiplicateur de complexité) + somme des options choisies.",
+    "Chaque prix a un minimum ('min') et un maximum ('max'). Le résultat est arrondi au multiple de 'arrondi'.",
+    "Une option simple a un 'min' / 'max'. Une option à niveaux (comme l'IA) a une liste 'niveaux', chacun avec son propre 'min' / 'max' et sa description.",
+    "Une option à niveaux avec \"choix\": \"multiple\" affiche des cases à cocher : le visiteur peut cumuler plusieurs niveaux (leurs prix s'additionnent). Sans \"choix\", un seul niveau est possible.",
+    "'icone' : design, auth, mobile, paiement (carte), admin, seolocal, multilangue, ia, ajout ou outils. 'afficherPrix' : false masque les prix sur les cartes d'options.",
+    "Pour ajouter ou retirer un type, une complexité, une option ou un niveau, ajoutez ou supprimez un bloc ({ ... }) en gardant un 'id' unique.",
+    "Les textes ont deux langues : 'fr' et 'en'.",
+    "Sur une option simple, \"large\": true l'affiche sur toute la largeur.",
+    "Type : 'options' (liste d'id) limite les options affichées pour ce type ; 'sansComplexite': true masque le choix de complexité ; 'titreOptions' renomme le titre de la section options.",
+    "Option : 'types' (liste d'id) limite l'option à certains types ; 'exclusif' (liste d'id) décoche les autres blocs listés quand un niveau est choisi ; sur un niveau, 'ouvert': true affiche un « + » après le maximum (prix à partir de)."
+  ],
+  "devise": "FCFA",
+  "arrondi": 2500,
+  "note": {
+    "fr": "Hors hébergement / noms de domaine · Devis sous 24h",
+    "en": "Excl. hosting / domain names · Quote within 24h"
+  },
+  "defaut": {
+    "type": "vitrine",
+    "complexite": "moyen",
+    "options": [],
+    "niveaux": {}
+  },
+  "types": [
+    {
+      "id": "vitrine",
+      "label": {
+        "fr": "Site vitrine",
+        "en": "Showcase site"
+      },
+      "desc": {
+        "fr": "Présentation, contact, SEO de base",
+        "en": "Presentation, contact, basic SEO"
+      },
+      "min": 200000,
+      "max": 350000
+    },
+    {
+      "id": "ecommerce",
+      "label": {
+        "fr": "E-commerce",
+        "en": "E-commerce"
+      },
+      "desc": {
+        "fr": "Catalogue, panier, commande",
+        "en": "Catalogue, cart, checkout"
+      },
+      "min": 500000,
+      "max": 850000
+    },
+    {
+      "id": "webapp",
+      "label": {
+        "fr": "Application web",
+        "en": "Web application"
+      },
+      "desc": {
+        "fr": "Comptes, admin, logique métier",
+        "en": "Accounts, admin, business logic"
+      },
+      "min": 750000,
+      "max": 1500000
+    },
+    {
+      "id": "seo",
+      "label": {
+        "fr": "SEO / refonte légère",
+        "en": "SEO / light redesign"
+      },
+      "desc": {
+        "fr": "Optimisation ou petites évolutions",
+        "en": "Optimisation or small changes"
+      },
+      "min": 100000,
+      "max": 250000
+    },
+    {
+      "id": "data",
+      "label": {
+        "fr": "Analyse de données",
+        "en": "Data analysis"
+      },
+      "desc": {
+        "fr": "Nettoyage, KPI, rapports, modèles prédictifs",
+        "en": "Cleaning, KPIs, reports, predictive models"
+      },
+      "min": 0,
+      "max": 0,
+      "sansComplexite": true,
+      "titreOptions": {
+        "fr": "Niveau d'analyse",
+        "en": "Analysis level"
+      },
+      "options": [
+        "analyse",
+        "analyse_ia"
+      ]
+    }
+  ],
+  "complexites": [
+    {
+      "id": "simple",
+      "label": {
+        "fr": "Simple",
+        "en": "Simple"
+      },
+      "multiplicateur": 1
+    },
+    {
+      "id": "moyen",
+      "label": {
+        "fr": "Moyen",
+        "en": "Medium"
+      },
+      "multiplicateur": 1.5
+    },
+    {
+      "id": "avance",
+      "label": {
+        "fr": "Avancé",
+        "en": "Advanced"
+      },
+      "multiplicateur": 2
+    }
+  ],
+  "options": [
+    {
+      "id": "design",
+      "icone": "design",
+      "label": {
+        "fr": "Design UI/UX poussé",
+        "en": "Advanced UI/UX design"
+      },
+      "desc": {
+        "fr": "Maquettes sur mesure, identité visuelle, animations",
+        "en": "Custom mockups, visual identity, animations"
+      },
+      "min": 100000,
+      "max": 200000
+    },
+    {
+      "id": "auth",
+      "icone": "auth",
+      "label": {
+        "fr": "Espace utilisateur / auth",
+        "en": "User area / auth"
+      },
+      "desc": {
+        "fr": "Comptes, connexion sécurisée, profils",
+        "en": "Accounts, secure sign-in, profiles"
+      },
+      "min": 100000,
+      "max": 180000
+    },
+    {
+      "id": "mobilemoney",
+      "icone": "mobile",
+      "label": {
+        "fr": "API Mobile Money (Wave, Orange Money, etc.)",
+        "en": "Mobile Money API (Wave, Orange Money, etc.)"
+      },
+      "desc": {
+        "fr": "Encaissement par mobile money et suivi des transactions",
+        "en": "Mobile money payments and transaction tracking"
+      },
+      "min": 150000,
+      "max": 250000
+    },
+    {
+      "id": "cartes",
+      "icone": "paiement",
+      "label": {
+        "fr": "API cartes bancaires (Visa, Mastercard, PayPal, etc.)",
+        "en": "Card payment API (Visa, Mastercard, PayPal, etc.)"
+      },
+      "desc": {
+        "fr": "Paiement par carte et portefeuille en ligne, sécurisé",
+        "en": "Secure card and online wallet payments"
+      },
+      "min": 175000,
+      "max": 300000
+    },
+    {
+      "id": "admin",
+      "icone": "admin",
+      "label": {
+        "fr": "Dashboard admin",
+        "en": "Admin dashboard"
+      },
+      "desc": {
+        "fr": "Gestion du contenu, des commandes et des utilisateurs",
+        "en": "Manage content, orders and users"
+      },
+      "min": 100000,
+      "max": 200000
+    },
+    {
+      "id": "seolocal",
+      "icone": "seolocal",
+      "label": {
+        "fr": "SEO local renforcé",
+        "en": "Enhanced local SEO"
+      },
+      "desc": {
+        "fr": "Google Business, référencement à Dakar et au Sénégal",
+        "en": "Google Business, local ranking in Dakar and Senegal"
+      },
+      "min": 60000,
+      "max": 120000
+    },
+    {
+      "id": "multilangue",
+      "icone": "multilangue",
+      "label": {
+        "fr": "Multi-langue",
+        "en": "Multi-language"
+      },
+      "desc": {
+        "fr": "Contenu en plusieurs langues avec sélecteur",
+        "en": "Multi-language content with a language switch"
+      },
+      "min": 30000,
+      "max": 75000
+    },
+    {
+      "id": "ia",
+      "icone": "ia",
+      "label": {
+        "fr": "Intégration IA & workflow métier",
+        "en": "AI integration & business workflow"
+      },
+      "desc": {
+        "fr": "Automatisez vos processus et ajoutez de l'intelligence à votre application.",
+        "en": "Automate your processes and add intelligence to your application."
+      },
+      "aucun": {
+        "fr": "Sans IA",
+        "en": "No AI"
+      },
+      "niveaux": [
+        {
+          "id": "basique",
+          "label": {
+            "fr": "Basique",
+            "en": "Basic"
+          },
+          "desc": {
+            "fr": "Une fonctionnalité IA : chatbot, assistant ou génération de contenu branché sur une API IA.",
+            "en": "One AI feature: chatbot, assistant or content generation connected to an AI API."
+          },
+          "min": 150000,
+          "max": 300000
+        },
+        {
+          "id": "intermediaire",
+          "label": {
+            "fr": "Intermédiaire",
+            "en": "Intermediate"
+          },
+          "desc": {
+            "fr": "Automatisation de 2 à 3 processus métier, base de connaissances et tableau de suivi.",
+            "en": "Automation of 2 to 3 business processes, knowledge base and tracking dashboard."
+          },
+          "min": 350000,
+          "max": 650000
+        },
+        {
+          "id": "avance",
+          "label": {
+            "fr": "Avancé",
+            "en": "Advanced"
+          },
+          "desc": {
+            "fr": "Workflows métier complets, agents IA, intégration à vos outils (CRM, ERP, WhatsApp) et supervision.",
+            "en": "End-to-end business workflows, AI agents, integration with your tools (CRM, ERP, WhatsApp) and monitoring."
+          },
+          "min": 750000,
+          "max": 1500000
+        }
+      ]
+    },
+    {
+      "id": "feature",
+      "icone": "ajout",
+      "label": {
+        "fr": "Nouvelle fonctionnalité (hors IA)",
+        "en": "New feature (non-AI)"
+      },
+      "desc": {
+        "fr": "Ajoutez une fonctionnalité à un site ou une application existante. L'IA se choisit dans le bloc ci-dessus.",
+        "en": "Add a feature to an existing site or application. AI is chosen in the block above."
+      },
+      "aucun": {
+        "fr": "Aucune",
+        "en": "None"
+      },
+      "niveaux": [
+        {
+          "id": "simple",
+          "label": {
+            "fr": "Simple",
+            "en": "Simple"
+          },
+          "desc": {
+            "fr": "Petite fonctionnalité isolée : formulaire, page, filtre, export.",
+            "en": "Small, self-contained feature: form, page, filter, export."
+          },
+          "min": 50000,
+          "max": 125000
+        },
+        {
+          "id": "intermediaire",
+          "label": {
+            "fr": "Intermédiaire",
+            "en": "Intermediate"
+          },
+          "desc": {
+            "fr": "Fonctionnalité complète avec base de données et interface : module, espace dédié, notifications.",
+            "en": "Complete feature with database and interface: module, dedicated area, notifications."
+          },
+          "min": 150000,
+          "max": 350000
+        },
+        {
+          "id": "avance",
+          "label": {
+            "fr": "Avancé",
+            "en": "Advanced"
+          },
+          "desc": {
+            "fr": "Fonctionnalité complexe : logique métier, intégrations tierces, rôles et droits, tests.",
+            "en": "Complex feature: business logic, third-party integrations, roles and permissions, tests."
+          },
+          "min": 350000,
+          "max": 750000
+        }
+      ]
+    },
+    {
+      "id": "debug",
+      "icone": "outils",
+      "large": true,
+      "label": {
+        "fr": "Débogage / correction de bugs",
+        "en": "Debugging / bug fixing"
+      },
+      "desc": {
+        "fr": "Diagnostic et correction de bugs sur une application existante, avec tests de non-régression.",
+        "en": "Diagnosis and fixing of bugs in an existing application, with regression tests."
+      },
+      "min": 35000,
+      "max": 100000
+    },
+    {
+      "id": "analyse",
+      "icone": "data",
+      "types": [
+        "data"
+      ],
+      "exclusif": [
+        "analyse_ia"
+      ],
+      "label": {
+        "fr": "Analyse de données (sans IA)",
+        "en": "Data analysis (no AI)"
+      },
+      "desc": {
+        "fr": "Analyse statistique classique de vos données, du nettoyage à l'étude décisionnelle.",
+        "en": "Classic statistical analysis of your data, from cleaning to decision studies."
+      },
+      "aucun": {
+        "fr": "Aucune",
+        "en": "None"
+      },
+      "niveaux": [
+        {
+          "id": "basic",
+          "label": {
+            "fr": "Basique",
+            "en": "Basic"
+          },
+          "desc": {
+            "fr": "Nettoyage simple, filtrage, statistiques descriptives, Excel/CSV.",
+            "en": "Simple cleaning, filtering, descriptive statistics, Excel/CSV."
+          },
+          "min": 75000,
+          "max": 150000
+        },
+        {
+          "id": "intermediate",
+          "label": {
+            "fr": "Intermédiaire",
+            "en": "Intermediate"
+          },
+          "desc": {
+            "fr": "Analyse approfondie, identification des tendances, KPI, rapports.",
+            "en": "In-depth analysis, trend identification, KPIs, reports."
+          },
+          "min": 175000,
+          "max": 400000
+        },
+        {
+          "id": "advanced",
+          "label": {
+            "fr": "Avancé",
+            "en": "Advanced"
+          },
+          "desc": {
+            "fr": "Analyse complexe, corrélations, segmentation, analyse multidimensionnelle.",
+            "en": "Complex analysis, correlations, segmentation, multidimensional analysis."
+          },
+          "min": 400000,
+          "max": 800000
+        },
+        {
+          "id": "expert",
+          "label": {
+            "fr": "Expert",
+            "en": "Expert"
+          },
+          "desc": {
+            "fr": "Analyse prédictive statistique, optimisation, modèles avancés, étude décisionnelle.",
+            "en": "Statistical predictive analysis, optimisation, advanced models, decision studies."
+          },
+          "min": 800000,
+          "max": 1800000,
+          "ouvert": true
+        }
+      ]
+    },
+    {
+      "id": "analyse_ia",
+      "icone": "ia",
+      "types": [
+        "data"
+      ],
+      "exclusif": [
+        "analyse"
+      ],
+      "label": {
+        "fr": "Analyse de données avec IA",
+        "en": "Data analysis with AI"
+      },
+      "desc": {
+        "fr": "Analyse enrichie par l'intelligence artificielle : détection, classification, prédiction.",
+        "en": "Analysis enhanced by artificial intelligence: detection, classification, prediction."
+      },
+      "aucun": {
+        "fr": "Aucune",
+        "en": "None"
+      },
+      "niveaux": [
+        {
+          "id": "basic",
+          "label": {
+            "fr": "Basique",
+            "en": "Basic"
+          },
+          "desc": {
+            "fr": "Analyse assistée par IA, résumé automatique, détection d'anomalies.",
+            "en": "AI-assisted analysis, automatic summaries, anomaly detection."
+          },
+          "min": 150000,
+          "max": 300000
+        },
+        {
+          "id": "intermediate",
+          "label": {
+            "fr": "Intermédiaire",
+            "en": "Intermediate"
+          },
+          "desc": {
+            "fr": "Analyse intelligente, classification, extraction d'insights.",
+            "en": "Intelligent analysis, classification, insight extraction."
+          },
+          "min": 350000,
+          "max": 650000
+        },
+        {
+          "id": "advanced",
+          "label": {
+            "fr": "Avancé",
+            "en": "Advanced"
+          },
+          "desc": {
+            "fr": "Modèles ML, prédictions, automatisation des analyses.",
+            "en": "ML models, predictions, analysis automation."
+          },
+          "min": 750000,
+          "max": 1500000
+        },
+        {
+          "id": "expert",
+          "label": {
+            "fr": "Expert",
+            "en": "Expert"
+          },
+          "desc": {
+            "fr": "Solutions IA avancées, pipelines ML, intégration et déploiement.",
+            "en": "Advanced AI solutions, ML pipelines, integration and deployment."
+          },
+          "min": 1500000,
+          "max": 3000000,
+          "ouvert": true
+        }
+      ]
+    }
+  ],
+  "afficherPrix": true
+}
