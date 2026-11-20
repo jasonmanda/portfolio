@@ -137,3 +137,9 @@ label.est-seg:has(input:checked){border-color:var(--e-acc);background:var(--e-se
 label.est-opt.wide{grid-column:1/-1}
 .est [hidden]{display:none!important}
 .est-quote:disabled{opacity:.45;cursor:not-allowed;filter:none}
+
+.est-cur{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1rem}
+.est-cur button{padding:.3rem .8rem;background:transparent;border:1px solid var(--e-line);border-radius:999px;color:var(--e-mut);font:600 .8rem system-ui,sans-serif;cursor:pointer;transition:background .15s,color .15s}
+.est-cur button:hover{border-color:var(--e-hov)}
+.est-cur button[aria-checked="true"]{background:var(--e-acc);border-color:var(--e-acc);color:var(--e-on)}
+.est-cur button:focus-visible{outline:2px solid var(--e-acc);outline-offset:2px}

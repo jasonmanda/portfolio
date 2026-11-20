@@ -10,7 +10,8 @@
     "Les textes ont deux langues : 'fr' et 'en'.",
     "Sur une option simple, \"large\": true l'affiche sur toute la largeur.",
     "Type : 'options' (liste d'id) limite les options affichées pour ce type ; 'sansComplexite': true masque le choix de complexité ; 'titreOptions' renomme le titre de la section options.",
-    "Option : 'types' (liste d'id) limite l'option à certains types ; 'exclusif' (liste d'id) décoche les autres blocs listés quand un niveau est choisi ; sur un niveau, 'ouvert': true affiche un « + » après le maximum (prix à partir de)."
+    "Option : 'types' (liste d'id) limite l'option à certains types ; 'exclusif' (liste d'id) décoche les autres blocs listés quand un niveau est choisi ; sur un niveau, 'ouvert': true affiche un « + » après le maximum (prix à partir de).",
+    "Devises : 'devises' liste les monnaies proposées ; 'taux' = nombre de FCFA pour 1 unité (EUR : parité fixe 655,957). USD et CAD sont actualisés en direct si 'tauxEnDirect' vaut true, sinon ces valeurs servent de repli. 'arrondiDevise' : arrondi du total hors FCFA."
   ],
   "devise": "FCFA",
   "arrondi": 2500,
@@ -509,5 +510,30 @@
       ]
     }
   ],
-  "afficherPrix": true
+  "afficherPrix": true,
+  "tauxEnDirect": true,
+  "arrondiDevise": 5,
+  "devises": [
+    {
+      "id": "XOF",
+      "label": "FCFA",
+      "taux": 1
+    },
+    {
+      "id": "USD",
+      "label": "USD",
+      "taux": 570
+    },
+    {
+      "id": "CAD",
+      "label": "CAD",
+      "taux": 417
+    },
+    {
+      "id": "EUR",
+      "label": "EUR",
+      "taux": 655.957,
+      "fixe": true
+    }
+  ]
 }

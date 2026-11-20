@@ -39,6 +39,7 @@ Le simulateur d'estimation (section « Estimation ») lit ses prix dans `tarifs.
 - Type « Analyse de données » : il n'a pas de prix de base (`min` / `max` à 0) et n'affiche que les blocs `analyse` (sans IA) et `analyse_ia` (avec IA), chacun à 4 niveaux (Basique, Intermédiaire, Avancé, Expert). Les deux blocs s'excluent mutuellement (`exclusif`).
 - Réglages avancés : sur un type, `options` (liste d'id) limite les options affichées, `sansComplexite` masque le choix de complexité et `titreOptions` renomme la section ; sur une option, `types` la limite à certains types ; sur un niveau, `ouvert: true` affiche un « + » après le maximum (prix « à partir de »).
 - Formule : `(prix du type × multiplicateur) + options choisies`.
+- Devises : le visiteur choisit FCFA, USD, CAD ou EUR (boutons dans le panneau du résultat). Les prix restent saisis en FCFA ; `devises` donne le `taux` (FCFA pour 1 unité) de chaque monnaie. EUR est à parité fixe (655,957). USD et CAD sont actualisés en direct (`tauxEnDirect`, API publique open.er-api.com) avec les valeurs de `tarifs.json` en repli ; `arrondiDevise` arrondit le total hors FCFA. Le message de devis pré-rempli indique aussi le montant en FCFA.
 - Textes de la section : clés `est_*` dans `script.js` (FR) et dans `index.html` (EN).
 - Le fichier est chargé avec `fetch` : en local, utilisez `npx serve .` (l'ouverture directe de `index.html` ne suffit pas pour cette section). Sur Vercel, rien à faire.
 

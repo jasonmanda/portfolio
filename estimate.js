@@ -7,9 +7,9 @@
   const L = o => (typeof o === "string" ? o : (o && (o[cur()] || o.fr || o.en)) || "");
   const tx = {
     fr: { err: "Impossible de charger tarifs.json. Ouvrez le site via un serveur (ex. npx serve .).", pick: "Choisissez un niveau pour obtenir une estimation.", none: "aucune", noLevel: "Aucun",
-          hello: "Bonjour, je souhaite un devis.", type: "Projet", cx: "Complexité", opt: "Options", est: "Estimation indicative" },
+          hello: "Bonjour, je souhaite un devis.", type: "Projet", cx: "Complexité", opt: "Options", est: "Estimation indicative", rate: "Conversion indicative" },
     en: { err: "Could not load tarifs.json. Open the site through a server (e.g. npx serve .).", pick: "Choose a level to get an estimate.", none: "none", noLevel: "None",
-          hello: "Hello, I would like a quote.", type: "Project", cx: "Complexity", opt: "Options", est: "Indicative estimate" }
+          hello: "Hello, I would like a quote.", type: "Project", cx: "Complexity", opt: "Options", est: "Indicative estimate", rate: "Indicative conversion" }
   };
 
   // Icônes (traits simples, fournies par le code, pas par le JSON)
@@ -35,6 +35,8 @@
   const $quote = document.getElementById("est-quote");
 
   let T = null;
+  let C = null;        // devise affichée : { id, label, taux } (taux = FCFA pour 1 unité)
+  const $cur = document.getElementById("est-cur");
   const refresh = [];      // fonctions qui re-écrivent les textes (changement de langue)
   const levelDescs = {};   // id option -> élément de description du niveau choisi
   const optEls = {};       // id option -> élément DOM (pour l'afficher / le masquer)
@@ -49,8 +51,15 @@
   function tr(e, obj, field) { bind(e, () => L(obj[field])); }
 
   function num(n) { return n.toLocaleString(cur() === "fr" ? "fr-FR" : "en-US").replace(/[\u202f\u00a0]/g, "\u00a0"); }
-  function amount(n, open) { return num(n) + (open ? "+" : "") + "\u00a0" + (T.devise || ""); }
-  function plus(o) { return "+" + num(o.min) + " – " + amount(o.max, o.ouvert); }
+  // Les prix sont saisis en FCFA ; on convertit à l'affichage selon la devise choisie.
+  function conv(n, step) {
+    if (!C || C.taux === 1) return n;
+    const v = n / C.taux;
+    return step > 1 ? Math.round(v / step) * step : Math.round(v);
+  }
+  function unit() { return C ? C.label : (T.devise || ""); }
+  function amount(n, open, step) { return num(conv(n, step)) + (open ? "+" : "") + "\u00a0" + unit(); }
+  function plus(o) { return "+" + num(conv(o.min)) + " – " + amount(o.max, o.ouvert); }
 
   function input(parent, kind, name, value, checked, onChange) {
     const i = el("input", "", parent);
@@ -176,8 +185,56 @@
              open: picks.some(p => p.ouvert), empty: max === 0 };
   }
 
-  function range() { const r = compute(); return money(r.min) + " — " + amount(r.max, r.open); }
-  function money(n) { return amount(n, false); }
+  function range() {
+    const r = compute(), st = T.arrondiDevise || 1;
+    return amount(r.min, false, st) + " — " + amount(r.max, r.open, st);
+  }
+  function rangeBase() {
+    const r = compute(), keep = C; C = null;
+    const out = amount(r.min, false) + " — " + amount(r.max, r.open);
+    C = keep; return out;
+  }
+  function rateNote() {
+    if (!C || C.taux === 1) return "";
+    return tx[cur()].rate + " : 1 " + C.label + " ≈ " + C.taux.toLocaleString(cur() === "fr" ? "fr-FR" : "en-US", { maximumFractionDigits: 3 }) + "\u00a0" + (T.devise || "FCFA") + ".";
+  }
+
+  function buildCurrencies() {
+    const list = T.devises || [];
+    if (list.length < 2) { $cur.hidden = true; return; }
+    let saved = ""; try { saved = localStorage.getItem("estCur") || ""; } catch (e) {}
+    C = list.find(x => x.id === saved) || list[0];
+    list.forEach(c => {
+      const b = el("button", "", $cur);
+      b.type = "button"; b.textContent = c.label; b.setAttribute("role", "radio");
+      b.addEventListener("click", () => {
+        C = c;
+        try { localStorage.setItem("estCur", c.id); } catch (e) {}
+        syncCur(); retext();
+      });
+    });
+    syncCur();
+  }
+  function syncCur() {
+    [...$cur.children].forEach((b, i) => b.setAttribute("aria-checked", String(T.devises[i] === C)));
+  }
+
+  // Taux en direct (USD, CAD) ; en cas d'échec, les taux de tarifs.json restent utilisés.
+  function liveRates() {
+    if (!T.tauxEnDirect || !T.devises) return;
+    fetch("https://open.er-api.com/v6/latest/XOF")
+      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+      .then(j => {
+        T.devises.forEach(c => {
+          const per = j && j.rates && j.rates[c.id];
+          if (c.fixe || c.id === "XOF" || !per) return;
+          const taux = 1 / per;
+          if (taux > c.taux * 0.85 && taux < c.taux * 1.15) c.taux = taux; // garde-fou
+        });
+        retext();
+      })
+      .catch(() => {});
+  }
 
   const legend = document.getElementById("est-opt-legend");
   const legendDefault = { en: legend ? legend.dataset.en : "", fr: (typeof fr !== "undefined" && fr.est_opt) || (legend ? legend.dataset.en : "") };
@@ -190,7 +247,7 @@
 
     const r = compute();
     $value.textContent = r.empty ? "—" : range();
-    $note.textContent = r.empty ? tx[cur()].pick : (T.note ? L(T.note) : "");
+    $note.textContent = r.empty ? tx[cur()].pick : [T.note ? L(T.note) : "", rateNote()].filter(Boolean).join(" · ");
     $quote.disabled = r.empty;
 
     T.options.forEach(o => {
@@ -206,7 +263,7 @@
       m.type + " : " + L(s.t.label),
       ...(s.c ? [m.cx + " : " + L(s.c.label)] : []),
       m.opt + " : " + (s.picks.length ? s.picks.map(p => p.label).join(", ") : m.none),
-      m.est + " : " + range(), ""
+      m.est + " : " + range() + (C && C.taux !== 1 ? " (" + rangeBase() + ")" : ""), ""
     ].join("\n");
     const ta = document.querySelector("#form textarea[name=message]");
     if (ta) ta.value = msg;
@@ -218,6 +275,6 @@
 
   fetch("tarifs.json", { cache: "no-store" })
     .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-    .then(j => { T = j; build(); retext(); })
+    .then(j => { T = j; build(); buildCurrencies(); retext(); liveRates(); })
     .catch(() => { $value.textContent = "—"; $note.textContent = tx[cur()].err; });
 })();
